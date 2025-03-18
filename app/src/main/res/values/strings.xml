@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">CrudPersonaMvvm</string>
+
+    <string name="placeholder_number_document">Document</string>
+
+    <string name="placeholder_name">Name</string>
+
+    <string name="placeholder_last_name">Last Name</string>
+
+    <string name="placeholder_email">Email</string>
+
+    <string name="placeholder_password">Password</string>
+
+    <string name="placeholder_confirm_password">Confirm Password</string>
+
+    <string name="placeholder_address">Address</string>
+
+    <string name="placeholder_phone">Phone</string>
+
+    <string name="placeholder_age">Age</string>
+    <string name="btn_save">Save</string>
 </resources>
