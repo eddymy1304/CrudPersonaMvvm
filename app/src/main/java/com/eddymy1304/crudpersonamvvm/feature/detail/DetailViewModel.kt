@@ -6,6 +6,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.toRoute
+import com.eddymy1304.crudpersonamvvm.core.DataError
 import com.eddymy1304.crudpersonamvvm.data.repository.PersonRepository
 import com.eddymy1304.crudpersonamvvm.domain.mapper.toEntityFromDomain
 import com.eddymy1304.crudpersonamvvm.feature.detail.DetailAction.GetPersonByDni
@@ -50,10 +51,12 @@ class DetailViewModel @Inject constructor(
                 .onStart { _uiState.value.copy(isLoading = true) }
                 .catch { _uiState.value.copy(isLoading = false) }
                 .collect { person ->
-                    _uiState.value.copy(
-                        person = person ?: _uiState.value.person,
-                        isLoading = false
-                    )
+                    _uiState.update { state ->
+                        state.copy(
+                            person = person ?: state.person,
+                            isLoading = false
+                        )
+                    }
                 }
         }
     }
@@ -76,8 +79,12 @@ class DetailViewModel @Inject constructor(
                 .onSuccess {
                     _uiEvent.emit(DetailEvent.NavigateToHome)
                 }
-                .onFailure {
-
+                .onFailure { e ->
+                    when (e as DataError) {
+                        is DataError.AlreadyExistsError -> TODO()
+                        is DataError.NetworkError -> TODO()
+                        is DataError.UnknownError -> TODO()
+                    }
                 }
         }
     }
