@@ -104,7 +104,20 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.okhttp)
 
+    // Mockito
+    testImplementation(libs.mockito)
+    testImplementation(libs.mockito.inline)
+    // Mockito Kotlin
+    testImplementation(libs.mockito.kotlin)
+    // Mockk
+    testImplementation(libs.mockk)
+
+    // JUnit
     testImplementation(libs.junit)
+
+    // Coroutines Test
+    testImplementation(libs.kotlinx.coroutines.test)
+
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

@@ -80,10 +80,14 @@ class DetailViewModel @Inject constructor(
                     _uiEvent.emit(DetailEvent.NavigateToHome)
                 }
                 .onFailure { e ->
-                    when (e as DataError) {
-                        is DataError.AlreadyExistsError -> TODO()
-                        is DataError.NetworkError -> TODO()
-                        is DataError.UnknownError -> TODO()
+                    (e as? DataError)?.let { dataError ->
+                        when (dataError) {
+                            is DataError.AlreadyExistsError -> {}
+                            is DataError.NetworkError -> {}
+                            is DataError.UnknownError -> {}
+                        }
+                    } ?: run {
+
                     }
                 }
         }
